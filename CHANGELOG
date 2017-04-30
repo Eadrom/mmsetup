@@ -1,0 +1,33 @@
+**v1.1.0**
+
+Changes:
+* Updated Mattermost server release download URL to new home at mattermost.org
+* Added config option for allowing/disallowing users to be able to register an account on the server without a signup invite link
+* Re-ordered Let's Encrypt steps so a basic Nginx config is initially active and then the production config is swapped in once SSL certificates have been installed
+* Changed over to the new EFF version of the Let's Encrypt auto client, certbot.
+
+**v1.0.0**
+
+Gold release.  Production ready.  Creates a secure, pre-configurable Mattermost server.
+
+Changes:
+* Added a number of settings that can be configured at top of the script
+* Changed from using jq to sed to edit Mattermost's configuration file; jq statements in place as plan to move back to jq in future update as it is more robust
+* New salts for Mattermost are generated during setup
+* New Diffie-Hellman group is generated for the server and Nginx is configured to use it
+* Restricted the SSL/TLS ciphers Nginx can use
+* Added a download check on the Mattermost tar.gz and a fallback download to v2.0.0 if latest release isn't able to be downloaded.
+* Converted notes to documentation in README.md
+
+**v0.2.0**
+
+Beta release.  mmsetup.sh will, in it's current form, create an SSL ready Mattermost server. The only supported target right now is an Ubuntu 14.04 droplet on Digital Ocean. Be sure to select a public SSH key to use when deploying a droplet as that is the only way to log into the server remotely.
+
+Changes:
+* SSL certs are now available self-signed or requested from Let's Encrypt
+* Mattermost front end now setup to use SSL by default
+* UFW configured and turned on
+* Passwords for accounts generated during cloud-init run now use 32 character randomly generated passwords instead of hard-coded passwords.
+
+**v0.1.0**
+* Initial commit.  Alpha release.  Creates non-SSL Mattermost server.
